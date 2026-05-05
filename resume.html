@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prashanth Koganti – Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #0078d4;
+      --dark: #0f172a;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-200: #e2e8f0;
+      --blue-400: #60a5fa;
+      --blue-600: #2563eb;
+      --white: #ffffff;
+      --bg: #f1f5f9;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+      padding: 40px 16px;
+    }
+
+    /* Controls bar */
+    .controls {
+      max-width: 900px; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; border: none; cursor: pointer;
+      font-size: 14px; font-weight: 500; color: var(--slate-600);
+      font-family: inherit; padding: 8px 12px; border-radius: 8px;
+      text-decoration: none; transition: background .2s, color .2s;
+    }
+    .btn-back:hover { background: rgba(0,0,0,.06); color: var(--dark); }
+    .btn-back svg { width: 16px; height: 16px; }
+    .btn-print {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary); color: #fff; border: none;
+      border-radius: 8px; padding: 10px 20px;
+      font-size: 14px; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .btn-print:hover { background: #005a9e; transform: translateY(-1px); }
+    .btn-print svg { width: 15px; height: 15px; }
+
+    /* Resume card */
+    .resume {
+      max-width: 900px; margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 8px 40px rgba(0,0,0,.12);
+      border-radius: 4px; overflow: hidden;
+      display: flex; flex-direction: row;
+      min-height: 1040px;
+    }
+
+    /* ── LEFT SIDEBAR ── */
+    .sidebar {
+      width: 33.33%; background: var(--slate-900);
+      color: var(--slate-200);
+      padding: 40px 28px;
+      display: flex; flex-direction: column;
+      flex-shrink: 0;
+    }
+    .sidebar-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--blue-600); color: #fff;
+      font-size: 24px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+      ring: 4px solid var(--slate-800);
+    }
+    .sidebar-name {
+      font-size: 18px; font-weight: 800; color: var(--white);
+      text-align: center; letter-spacing: -.3px; line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .sidebar-title {
+      font-size: 11px; font-weight: 500; color: var(--blue-400);
+      text-align: center; margin-bottom: 32px; line-height: 1.4;
+    }
+
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section-label {
+      font-size: 10px; text-transform: uppercase;
+      letter-spacing: .12em; color: var(--slate-500);
+      font-weight: 700; border-bottom: 1px solid var(--slate-700);
+      padding-bottom: 6px; margin-bottom: 14px;
+    }
+
+    /* Contact list */
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .contact-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.5; }
+    .contact-list li svg { width: 13px; height: 13px; color: var(--blue-400); flex-shrink: 0; margin-top: 2px; }
+
+    /* Impact stats */
+    .impact-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .impact-num { font-size: 26px; font-weight: 900; color: var(--white); line-height: 1; }
+    .impact-label { font-size: 11px; color: var(--slate-400); margin-top: 1px; }
+
+    /* Certs */
+    .cert-card {
+      background: rgba(255,255,255,.07); border: 1px solid var(--slate-700);
+      border-radius: 8px; padding: 10px 12px; margin-bottom: 10px;
+    }
+    .cert-issuer { font-size: 10px; color: var(--blue-400); margin-bottom: 3px; font-weight: 500; }
+    .cert-name { font-size: 12px; font-weight: 700; color: var(--white); line-height: 1.35; }
+
+    /* Skills sidebar */
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .skill-tag {
+      background: rgba(255,255,255,.08); border: 1px solid var(--slate-700);
+      border-radius: 4px; padding: 3px 8px;
+      font-size: 10px; font-weight: 500; color: var(--slate-300);
+    }
+
+    /* ── RIGHT CONTENT ── */
+    .content { flex: 1; padding: 40px 36px; }
+
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 14px; font-weight: 800; color: var(--slate-900);
+      text-transform: uppercase; letter-spacing: .06em;
+      border-bottom: 2px solid #dbeafe;
+      padding-bottom: 6px; margin-bottom: 14px;
+    }
+
+    /* Summary */
+    .summary-text { font-size: 13px; color: var(--slate-600); line-height: 1.75; }
+
+    /* Experience */
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; flex-wrap: wrap; gap: 4px; }
+    .exp-role { font-size: 14px; font-weight: 700; color: var(--slate-900); }
+    .exp-date { font-size: 12px; font-weight: 600; color: var(--blue-600); }
+    .exp-company { font-size: 12px; color: var(--slate-600); font-weight: 500; margin-bottom: 10px; }
+    .exp-list { list-style: disc; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
+    .exp-list li { font-size: 12px; color: var(--slate-700); line-height: 1.6; }
+    .exp-list li::marker { color: var(--blue-400); }
+
+    /* Skills grid */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+    .skill-row-label { font-size: 12px; font-weight: 700; color: var(--slate-800); margin-bottom: 2px; }
+    .skill-row-value { font-size: 12px; color: var(--slate-600); }
+    .skill-row-full { grid-column: 1 / -1; }
+
+    /* Projects */
+    .project-title { font-size: 13px; font-weight: 700; color: var(--slate-800); margin-bottom: 2px; }
+    .project-tech { font-size: 11px; color: var(--blue-600); font-weight: 500; margin-bottom: 7px; }
+    .project-list { list-style: disc; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+    .project-list li { font-size: 12px; color: var(--slate-700); line-height: 1.6; }
+    .project-list li::marker { color: var(--slate-400); }
+    .project-block { margin-bottom: 14px; }
+
+    /* Education */
+    .edu-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+    .edu-degree { font-size: 13px; font-weight: 700; color: var(--slate-800); margin-bottom: 2px; }
+    .edu-inst { font-size: 12px; color: var(--slate-600); }
+    .edu-meta { text-align: right; font-size: 12px; color: var(--slate-500); font-weight: 500; }
+    .edu-loc { font-size: 11px; color: var(--slate-400); }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; padding: 0; }
+      .controls { display: none; }
+      .resume { max-width: 100%; box-shadow: none; border-radius: 0; }
+      .sidebar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 680px) {
+      .resume { flex-direction: column; }
+      .sidebar { width: 100%; }
+      .controls { flex-direction: column; gap: 12px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Controls -->
+<div class="controls">
+  <a href="index.html" class="btn-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+    </svg>
+    Back to Portfolio
+  </a>
+  <button class="btn-print" onclick="window.print()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Download / Print
+  </button>
+</div>
+
+<!-- Resume -->
+<div class="resume">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div class="sidebar-avatar">PK</div>
+      <div class="sidebar-name">Prashanth Koganti</div>
+      <div class="sidebar-title">Azure Administrator &amp;<br />Terraform Specialist</div>
+    </div>
+
+    <!-- Contact -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Contact</div>
+      <ul class="contact-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Prashanth.koganti21@gmail.com
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 9989253136
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor" style="color:#60a5fa"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+          linkedin.com/in/prashanthkoganti
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hyderabad, India
+        </li>
+      </ul>
+    </div>
+
+    <!-- Impact -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Impact</div>
+      <ul class="impact-list">
+        <li><div class="impact-num">80%</div><div class="impact-label">Tasks Automated</div></li>
+        <li><div class="impact-num">20%</div><div class="impact-label">Cost Reduction</div></li>
+        <li><div class="impact-num">5+</div><div class="impact-label">Years Experience</div></li>
+      </ul>
+    </div>
+
+    <!-- Certifications -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Certifications</div>
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft Certified</div>
+        <div class="cert-name">Azure Administrator Associate</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Microsoft Certified</div>
+        <div class="cert-name">Network Engineer Associate</div>
+      </div>
+    </div>
+
+    <!-- Core Skills -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Core Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Azure</span>
+        <span class="skill-tag">Terraform</span>
+        <span class="skill-tag">PowerShell</span>
+        <span class="skill-tag">Azure DevOps</span>
+        <span class="skill-tag">Azure AD</span>
+        <span class="skill-tag">ARM Templates</span>
+        <span class="skill-tag">Azure CLI</span>
+        <span class="skill-tag">RBAC</span>
+        <span class="skill-tag">NSGs</span>
+        <span class="skill-tag">Azure Monitor</span>
+        <span class="skill-tag">Log Analytics</span>
+        <span class="skill-tag">VPN Gateway</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Summary -->
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary-text">
+        Dedicated Azure Administrator and Terraform Specialist with over 5 years of hands-on experience in managing enterprise-scale cloud operations. Proven track record of bridging traditional IT operations with modern cloud-native practices. Strong expertise in Infrastructure as Code (IaC), networking, identity management, CI/CD, and cost governance. Successfully automated 80% of resource provisioning tasks and reduced infrastructure costs by 20%.
+      </p>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+      <div class="exp-header">
+        <div class="exp-role">Azure Administrator</div>
+        <div class="exp-date">Mar 2021 – Present</div>
+      </div>
+      <div class="exp-company">NTT Managed Services Pvt Ltd &nbsp;|&nbsp; Hyderabad, India</div>
+      <ul class="exp-list">
+        <li>Managed and maintained enterprise-scale Azure infrastructure for global clients.</li>
+        <li>Provisioned and configured Virtual Machines, Storage Accounts, and Virtual Networks.</li>
+        <li>Administered Azure Active Directory (Azure AD) and implemented Role-Based Access Control (RBAC).</li>
+        <li>Designed and managed complex networking topologies including VNet Peering, VPN Gateways, and ExpressRoute.</li>
+        <li>Developed and maintained Infrastructure as Code (IaC) using Terraform for automated, repeatable deployments.</li>
+        <li>Integrated Terraform with Azure DevOps to establish robust CI/CD pipelines.</li>
+        <li>Implemented comprehensive monitoring and alerting solutions using Azure Monitor and Log Analytics.</li>
+        <li>Enhanced security posture by configuring Microsoft Defender for Cloud and enforcing Azure Policies.</li>
+        <li>Designed and executed Backup and Disaster Recovery strategies using Azure Backup and Site Recovery.</li>
+        <li>Automated routine administrative tasks using PowerShell scripting.</li>
+        <li>Ensured compliance and governance across Azure environments.</li>
+        <li>Analyzed resource utilization and implemented cost optimization strategies, right-sizing resources to reduce cloud spend by 20%.</li>
+      </ul>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-grid">
+        <div>
+          <div class="skill-row-label">Cloud Platform:</div>
+          <div class="skill-row-value">Microsoft Azure, Azure Resource Manager, Azure AD</div>
+        </div>
+        <div>
+          <div class="skill-row-label">IaC &amp; Automation:</div>
+          <div class="skill-row-value">Terraform, ARM Templates, PowerShell, Azure CLI</div>
+        </div>
+        <div>
+          <div class="skill-row-label">DevOps &amp; CI/CD:</div>
+          <div class="skill-row-value">Azure DevOps, Git, CI/CD Pipelines, Release Gates</div>
+        </div>
+        <div>
+          <div class="skill-row-label">Monitoring &amp; Security:</div>
+          <div class="skill-row-value">Azure Monitor, Log Analytics, Defender for Cloud</div>
+        </div>
+        <div class="skill-row-full">
+          <div class="skill-row-label">Networking &amp; DR:</div>
+          <div class="skill-row-value">VNets &amp; Subnets, NSGs, RBAC, Azure Policies, Load Balancers, Azure Backup, Site Recovery, HA Design, BCP Planning</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Projects -->
+    <div class="section">
+      <div class="section-title">Key Projects</div>
+      <div class="project-block">
+        <div class="project-title">Enterprise Azure Migration &amp; Automation</div>
+        <div class="project-tech">Tech: Terraform, Azure Migrate, Azure Monitor, RBAC</div>
+        <ul class="project-list">
+          <li>Developed custom Terraform modules for standardizing infrastructure deployment across environments.</li>
+          <li>Migrated on-premises workloads to Azure using Azure Migrate.</li>
+          <li>Configured centralized monitoring, alerting, backup and disaster recovery processes.</li>
+          <li>Ensured robust security and compliance by implementing RBAC, network security, and Azure Policies.</li>
+        </ul>
+      </div>
+      <div class="project-block">
+        <div class="project-title">Azure CI/CD Pipeline Automation</div>
+        <div class="project-tech">Tech: Azure DevOps, Terraform, IaC, Release Gates</div>
+        <ul class="project-list">
+          <li>Designed and implemented end-to-end CI/CD pipelines using Azure DevOps.</li>
+          <li>Automated build and release processes for applications to Azure App Services and AKS.</li>
+          <li>Configured approval gates to ensure controlled deployments, significantly reducing deployment times.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-degree">B.Tech in Electronics &amp; Communication Engineering</div>
+          <div class="edu-inst">Sri Indu Institute of Engineering and Technology</div>
+        </div>
+        <div class="edu-meta">
+          <div>2016–2020</div>
+          <div class="edu-loc">Hyderabad</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-degree">Intermediate (MPC)</div>
+          <div class="edu-inst">Sri Chaitanya Jr College</div>
+        </div>
+        <div class="edu-meta">
+          <div>2014–2016</div>
+          <div class="edu-loc">Ameenpur</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="edu-degree">Secondary School Certificate (SSC)</div>
+          <div class="edu-inst">Siddarth Model High School</div>
+        </div>
+        <div class="edu-meta">
+          <div>2003–2014</div>
+          <div class="edu-loc">Medak</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
